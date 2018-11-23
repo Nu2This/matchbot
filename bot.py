@@ -36,4 +36,13 @@ have a vanity URL. The steam ID is needed in order to use the dota2api"""
     return id
 
 
-getID('binaryatrocity')
+def getMatchHistory(id=76561198014402380, num_results=5):
+    """This function gets the match ids of the last 'x' matches. Two paramaters can be specified it will default to 5 matches. You need an ID"""
+    history = API.get_match_history(account_id=id,
+                                    matches_requested=num_results)
+    for item in history['matches']:
+        print(item['match_id'])
+
+
+getMatchHistory()
+
