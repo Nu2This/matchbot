@@ -12,7 +12,7 @@ HOST = 'irc.oftc.net'
 PORT = '6667'
 NICK = 'Nubot'
 IDENT = 'Nubot'
-CHANNEL = '#dotanoobs'
+CHANNEL = '##Nutest'
 ADMINNAME = 'Nu2This'
 EXITCODE = "bye " + NICK
 
@@ -69,6 +69,10 @@ if __name__ == '__main__':
         if ircmsg.find('PING :') != -1:
             ircsock.send(bytes("PONG :pingis\n", 'UTF-8'))
             print('pong')
+        if ircmsg.find('++') != -1:
+            name = message.split('++')[:-1]
+            print(name[0])
+            sendmsg(name[0] + ': ' + getstuff.score(name[0]) + ' total')
         if message[:8] == '!matches':
             if getstuff.isRegisterd(name) == False:
                 sendmsg('ID not found please !register')
