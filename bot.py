@@ -8,11 +8,11 @@ import getstuff
 from time import sleep
 
 
-HOST = 'chat.freenode.net'
+HOST = 'irc.oftc.net'
 PORT = '6667'
 NICK = 'Nubot'
 IDENT = 'Nubot'
-CHANNEL = '##nubottest'
+CHANNEL = '#dotanoobs'
 ADMINNAME = 'Nu2This'
 EXITCODE = "bye " + NICK
 
@@ -41,7 +41,7 @@ def joinchan(chan): # join channel(s).
 
 
 def ping(): # respond to server Pings.
-    ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
+    ircsock.send(bytes("PONG :pingis\n"))
     print('pong')
 
 
@@ -66,8 +66,9 @@ if __name__ == '__main__':
             name = ircmsg.split('!',1)[0][1:]
             message = ircmsg.split('PRIVMSG',1)[1].split(':',1)[1]
             print('name: ' + name)
-        if message[:6] == 'PING :':
-            ping()
+        if ircmsg.find('PING :') != -1:
+            ircsock.send(bytes("PONG :pingis\n", 'UTF-8'))
+            print('pong')
         if message[:8] == '!matches':
             if getstuff.isRegisterd(name) == False:
                 sendmsg('ID not found please !register')
@@ -81,6 +82,7 @@ if __name__ == '__main__':
 
         if message[:5] == '!quit':
             ircsock.send(bytes("QUIT \n", "UTF-8"))
+            break
 
 
    # parser = argparse.ArgumentParser()
