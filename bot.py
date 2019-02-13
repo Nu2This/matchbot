@@ -65,15 +65,20 @@ if __name__ == '__main__':
         if ircmsg.find("PRIVMSG") != -1:
             name = ircmsg.split('!',1)[0][1:]
             message = ircmsg.split('PRIVMSG',1)[1].split(':',1)[1]
-            print('name: ' + name)
+            print('Message From: ' + name)
         if ircmsg.find('PING :') != -1:
             ircsock.send(bytes("PONG :pingis\n", 'UTF-8'))
             print('pong')
         if ircmsg.find('++') != -1:
             name = message.split('++')[:-1]
+            print('Incrimenting" ' + name[0])
             print(name[0])
             sendmsg(name[0] + ': ' + getstuff.score(name[0]) + ' total')
         if message[:8] == '!matches':
+            if len(message.split('!matches ')) > 1:
+                name = message.split('!matches ')[1]
+                print(name)
+                print('You hit the split')
             if getstuff.isRegisterd(name) == False:
                 sendmsg('ID not found please !register')
             else:
@@ -81,6 +86,10 @@ if __name__ == '__main__':
                 for item in toSend:
                     sendmsg(item)
         if message[:9] == '!register':
+            if len(message.split('!register ')) > 1:
+                print('You hit the split')
+                name = message.split('!register ')[1]
+                print(name)
             getstuff.getID(APIKEY, name)
             sendmsg('Registrashion Compreeto!')
 

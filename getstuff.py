@@ -1,5 +1,5 @@
 from tinydb import TinyDB, Query
-from tinydb.operations import increment
+from tinydb.operations import increment, set
 import pudb
 import dota2api
 import requests
@@ -15,13 +15,16 @@ def score(name):
     # If the user is in the database increment the score and then return the
     # value
     if db.search(User.Name==name):
+        print('Name found')
         try:
             db.update(increment('score'), User.Name==name)
             return str(db.get(User.Name==name)['score'])
         except KeyError:
-            db.insert({'Name': name, 'score': 1})
+            db.update(set('score',1), User.Name==name)
+            return str(db.get(User.Name==name)['score'])
     # If the user is not in the database, create entry and set score to 1
     else:
+        print('Name not found')
         db.insert({'Name': name, 'score': 1})
         return str(db.get(User.Name==name)['score'])
 
