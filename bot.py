@@ -12,7 +12,7 @@ HOST = 'irc.oftc.net'
 PORT = '6667'
 NICK = 'Nubot'
 IDENT = 'Nubot'
-CHANNEL = '##Nu2test'
+CHANNEL = '#Dotanoobs'
 ADMINNAME = 'Nu2This'
 EXITCODE = "bye " + NICK
 
