@@ -12,7 +12,7 @@ HOST = 'irc.oftc.net'
 PORT = '6667'
 NICK = 'Nubot'
 IDENT = 'Nubot'
-CHANNEL = '##Nutest'
+CHANNEL = '##Nu2test'
 ADMINNAME = 'Nu2This'
 EXITCODE = "bye " + NICK
 
@@ -85,6 +85,10 @@ if __name__ == '__main__':
                 toSend = getstuff.getMatches(APIKEY, name, 5)
                 for item in toSend:
                     sendmsg(item)
+        if message[:4] == '!btc':
+            toSend = getstuff.ticker()
+            for item in toSend:
+                sendmsg(item)
         if message[:9] == '!register':
             if len(message.split('!register ')) > 1:
                 print('You hit the split')
