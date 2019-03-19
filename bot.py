@@ -18,7 +18,7 @@ EXITCODE = "bye " + NICK
 
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-APIKEY = '***REMOVED***'
+APIKEY = 'Enter Key'
 API = dota2api.Initialise(APIKEY)
 DOTABUFF = re.compile(":http://www.dotabuff.com/matches\d+")
 

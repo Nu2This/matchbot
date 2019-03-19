@@ -12,7 +12,7 @@ User = Query()
 
 
 def ticker():
-    api_token = '***REMOVED***'
+    api_token = 'aeac45a9-fc6b-4347-abb5-23d888f946c9'
     api_url_top5 = ('https://pro-api.coinmarketcap.com'
                     '/v1/cryptocurrency/quotes/latest?symbol='
                     'BTC,'

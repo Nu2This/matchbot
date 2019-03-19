@@ -2,7 +2,7 @@ import requests
 import json
 
 
-api_token = '***REMOVED***'
+api_token = 'Enter Here'
 api_url_top5 = ('https://pro-api.coinmarketcap.com'
                 '/v1/cryptocurrency/quotes/latest?symbol='
                 'BTC,'
